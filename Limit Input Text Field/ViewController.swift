@@ -39,7 +39,7 @@ class ViewController: UIViewController,UITextViewDelegate {
         
         allowInputNumberLabel = UILabel(frame: CGRect(x: self.view.frame.width - 50, y: self.view.frame.height - 40, width: 50, height: 40))
         self.view.addSubview(allowInputNumberLabel)
-        allowInputNumberLabel.text = "140"
+        allowInputNumberLabel.text = "180"
         allowInputNumberLabel.textAlignment = .right
     }
     
