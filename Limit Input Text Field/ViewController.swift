@@ -1,18 +1,11 @@
-//
-//  ViewController.swift
-//  Limit Input Text Field
-//
-//  Created by nimo on 2017/5/8.
-//  Copyright © 2017年 nimoAndHisFriends. All rights reserved.
-//
 
 import UIKit
 
 class ViewController: UIViewController,UITextViewDelegate {
-
+    
     var limitedTextView:UITextView!
     var allowInputNumberLabel:UILabel!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
@@ -20,7 +13,7 @@ class ViewController: UIViewController,UITextViewDelegate {
         self.initInputField()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(note:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -39,11 +32,11 @@ class ViewController: UIViewController,UITextViewDelegate {
         
         allowInputNumberLabel = UILabel(frame: CGRect(x: self.view.frame.width - 50, y: self.view.frame.height - 40, width: 50, height: 40))
         self.view.addSubview(allowInputNumberLabel)
-        allowInputNumberLabel.text = "180"
+        allowInputNumberLabel.text = "140"
         allowInputNumberLabel.textAlignment = .right
     }
     
-    func initNavigationBar() {
+    func initNavigationBar() {                 //通过新建UIBarButtonItem来创建navigationBarItem的左右Item
         let leftItem = UIBarButtonItem(title: "close", style: .plain, target: self, action: nil)
         self.navigationItem.leftBarButtonItem = leftItem
         let rightItem = UIBarButtonItem(title: "Tweet", style: .plain, target: self, action: nil)
@@ -51,8 +44,8 @@ class ViewController: UIViewController,UITextViewDelegate {
         navigationItem.rightBarButtonItem = rightItem
     }
     
-//    todo need to limit the paste action so that the length might be exceed!
-    func textViewDidChange(_ textView: UITextView) {
+    
+    func textViewDidChange(_ textView: UITextView) {            //通过TextView的textViewDidChange事件捕捉当前输入内容，从而进行限制输入字数
         let currentCharactorCount = (textView.text?.characters.count)!
         if  currentCharactorCount >= 140 {
             limitedTextView.resignFirstResponder()
@@ -68,15 +61,14 @@ class ViewController: UIViewController,UITextViewDelegate {
         //计算工具栏距离底部的间距
         let margin = UIScreen.main.bounds.height - y
         UIView.animate(withDuration: duration) {
-//            键盘弹出
+            //            键盘弹出
             if margin > 0 {
                 self.allowInputNumberLabel.frame.origin.y = self.allowInputNumberLabel.frame.origin.y - margin
             }
-//            键盘收起
+                //            键盘收起
             else {
                 self.allowInputNumberLabel.frame.origin.y = self.view.frame.height - 40
             }
         }
     }
 }
-

@@ -1,10 +1,7 @@
 //
 //  AppDelegate.swift
 //  Limit Input Text Field
-//
-//  Created by nimo on 2017/5/8.
-//  Copyright © 2017年 nimoAndHisFriends. All rights reserved.
-//
+
 
 import UIKit
 
